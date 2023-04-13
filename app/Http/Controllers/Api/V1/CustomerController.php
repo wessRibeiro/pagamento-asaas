@@ -21,12 +21,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        try{
-            $data = $this->service->index();
-            return $data;
-        }catch (\Exception $ex){
-            return returnJson($ex);
-        }
+        return response()->json($this->service->index(), 200);
     }
 
     /**
