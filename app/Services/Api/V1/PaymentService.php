@@ -2,7 +2,7 @@
 
 namespace App\Services\Api\V1;
 
-class CustomerService
+class PaymentService
 {
     public function index()
     {

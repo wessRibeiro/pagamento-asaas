@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCustomerRequest;
-use App\Http\Requests\UpdateCustomerRequest;
-use App\Services\Api\V1\CustomerService;
+use App\Http\Requests\StorePaymentRequest;
+use App\Http\Requests\UpdatePaymentRequest;
+use App\Services\Api\V1\PaymentService;
 
-class CustomerController extends Controller
+class PaymentController extends Controller
 {
-    protected CustomerService $service;
+    protected PaymentService $service;
 
     function __construct()
     {
-        $this->service = new CustomerService();
+        $this->service = new PaymentService();
     }
 
     /**
@@ -32,7 +32,7 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCustomerRequest $request)
+    public function store(StorePaymentRequest $request)
     {
         //
     }
@@ -40,7 +40,7 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Customer $customer)
+    public function show(Payment $payment)
     {
         //
     }
@@ -48,7 +48,7 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCustomerRequest $request, Customer $customer)
+    public function update(UpdatePaymentRequest $request, Payment $payment)
     {
         //
     }
@@ -56,7 +56,7 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Customer $customer)
+    public function destroy(Payment $payment)
     {
         //
     }
