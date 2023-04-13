@@ -25,10 +25,7 @@ class Payment extends \App\Asaas\Api\AbstractApi
 
         $this->extractMeta($payments);
 
-        return array_map(function($payment)
-        {
-            return new PaymentEntity($payment);
-        }, $payments->data);
+        return $payments->data;
     }
 
     /**

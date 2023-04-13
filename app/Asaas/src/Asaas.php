@@ -5,10 +5,7 @@ namespace App\Asaas;
 // API's
 use App\Asaas\Adapter\AdapterInterface;
 use App\Asaas\Api\Customer;
-use App\Asaas\Api\Subscription;
 use App\Asaas\Api\Payment;
-use App\Asaas\Api\Notification;
-use App\Asaas\Api\City;
 
 
 /**
