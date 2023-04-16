@@ -1,9 +1,6 @@
 <?php
 namespace App\Asaas\Api;
 
-// Entities
-use App\Asaas\Entity\Customer as CustomerEntity;
-
 /**
  * Customer API Endpoint
  *
@@ -20,11 +17,7 @@ class Customer extends \App\Asaas\Api\AbstractApi
     public function getAll(array $filters = [])
     {
         $customers = $this->adapter->get(sprintf('%s/customers?%s', $this->endpoint, http_build_query($filters)));
-
         $customers = json_decode($customers);
-
-        $this->extractMeta($customers);
-
         return $customers->data;
     }
 
@@ -37,9 +30,7 @@ class Customer extends \App\Asaas\Api\AbstractApi
     public function getById($id)
     {
         $customer = $this->adapter->get(sprintf('%s/customers/%s', $this->endpoint, $id));
-
         $customer = json_decode($customer);
-
         return $customer;
     }
 
@@ -58,8 +49,7 @@ class Customer extends \App\Asaas\Api\AbstractApi
                 return $customer;
             }
         }
-
-        return;
+        return '';
     }
 
     /**
@@ -71,9 +61,7 @@ class Customer extends \App\Asaas\Api\AbstractApi
     public function create(array $data)
     {
         $customer = $this->adapter->post(sprintf('%s/customers', $this->endpoint), $data);
-
         $customer = json_decode($customer);
-
         return $customer;
     }
 
@@ -87,9 +75,7 @@ class Customer extends \App\Asaas\Api\AbstractApi
     public function update($id, array $data)
     {
         $customer = $this->adapter->post(sprintf('%s/customers/%s', $this->endpoint, $id), $data);
-
         $customer = json_decode($customer);
-
         return $customer;
     }
 

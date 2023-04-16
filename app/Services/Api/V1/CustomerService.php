@@ -7,13 +7,11 @@ use App\Asaas\Asaas;
 
 class CustomerService
 {
-    protected GuzzleAdapter $adapter;
     protected Asaas $asaas;
 
     public function  __construct()
     {
-        $this->adapter = new GuzzleAdapter(env('ASSAS_API_KEY'));
-        $this->asaas = new Asaas($this->adapter,'homologacao');
+        $this->asaas = new Asaas();
     }
 
     public function index()

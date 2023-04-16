@@ -1,8 +1,6 @@
 <?php
 namespace App\Asaas\Api;
 
-// Entities
-use App\Asaas\Entity\Payment as PaymentEntity;
 
 /**
  * Payment API Endpoint
@@ -15,16 +13,12 @@ class Payment extends \App\Asaas\Api\AbstractApi
      * Get all payments
      *
      * @param   array  $filters  (optional) Filters Array
-     * @return  array  Payments Array
+     * @return  array  Array
      */
     public function getAll(array $filters = [])
     {
         $payments = $this->adapter->get(sprintf('%s/payments?%s', $this->endpoint, http_build_query($filters)));
-
         $payments = json_decode($payments);
-
-        $this->extractMeta($payments);
-
         return $payments->data;
     }
 
@@ -32,15 +26,13 @@ class Payment extends \App\Asaas\Api\AbstractApi
      * Get Payment By Id
      *
      * @param   int  $id  Payment Id
-     * @return  PaymentEntity
+     * @return  array
      */
     public function getById($id)
     {
         $payment = $this->adapter->get(sprintf('%s/payments/%s', $this->endpoint, $id));
-
         $payment = json_decode($payment);
-
-        return new PaymentEntity($payment);
+        return $payment;
     }
 
     /**
@@ -48,19 +40,16 @@ class Payment extends \App\Asaas\Api\AbstractApi
      *
      * @param   int    $customerId  Customer Id
      * @param   array  $filters     (optional) Filters Array
-     * @return  PaymentEntity
+     * @return  array
      */
     public function getByCustomer($customerId, array $filters = [])
     {
         $payments = $this->adapter->get(sprintf('%s/customers/%s/payments?%s', $this->endpoint, $customerId, http_build_query($filters)));
-
         $payments = json_decode($payments);
-
-        $this->extractMeta($payments);
 
         return array_map(function($payment)
         {
-            return new PaymentEntity($payment);
+            return $payment;
         }, $payments->data);
     }
 
@@ -69,35 +58,27 @@ class Payment extends \App\Asaas\Api\AbstractApi
      *
      * @param   int    $subscriptionId  Subscription Id
      * @param   array  $filters         (optional) Filters Array
-     * @return  PaymentEntity
+     * @return  array
      */
     public function getBySubscription($subscriptionId)
     {
         $payments = $this->adapter->get(sprintf('%s/subscriptions/%s/payments?%s', $this->endpoint, $subscriptionId, http_build_query($filters)));
-
         $payments = json_decode($payments);
-
-        $this->extractMeta($payments);
-
-        return array_map(function($payment)
-        {
-            return new PaymentEntity($payment);
-        }, $payments->data);
+        return $payments->data;
     }
 
     /**
      * Create New Payment
      *
      * @param   array  $data  Payment Data
-     * @return  PaymentEntity
+     * @return  array
      */
     public function create(array $data)
     {
         $payment = $this->adapter->post(sprintf('%s/payments', $this->endpoint), $data);
-
         $payment = json_decode($payment);
 
-        return new PaymentEntity($payment);
+        return $payment;
     }
 
     /**
@@ -105,15 +86,14 @@ class Payment extends \App\Asaas\Api\AbstractApi
      *
      * @param   string  $id    Payment Id
      * @param   array   $data  Payment Data
-     * @return  PaymentEntity
+     * @return  array
      */
     public function update($id, array $data)
     {
         $payment = $this->adapter->post(sprintf('%s/payments/%s', $this->endpoint, $id), $data);
-
         $payment = json_decode($payment);
 
-        return new PaymentEntity($payment);
+        return $payment;
     }
 
     /**

@@ -3,6 +3,7 @@ namespace App\Asaas;
 
 
 // API's
+use App\Asaas\Adapter\GuzzleHttpAdapter;
 use App\Asaas\Adapter\AdapterInterface;
 use App\Asaas\Api\Customer;
 use App\Asaas\Api\Payment;
@@ -15,31 +16,11 @@ use App\Asaas\Api\Payment;
  */
 class Asaas
 {
-    /**
-     * Adapter Interface
-     *
-     * @var  AdapterInterface
-     */
-    protected $adapter;
+    protected AdapterInterface $adapter;
 
-    /**
-     * Ambiente da API
-     *
-     * @var  string
-     */
-    protected $ambiente;
-
-    /**
-     * Constructor
-     *
-     * @param  AdapterInterface  $adapter   Adapter Instance
-     * @param  string            $ambiente  (optional) Ambiente da API
-     */
-    public function __construct(AdapterInterface $adapter, $ambiente = 'producao')
+    public function __construct()
     {
-        $this->adapter = $adapter;
-
-        $this->ambiente = $ambiente;
+        $this->adapter = new GuzzleHttpAdapter();
     }
 
     /**
@@ -49,7 +30,7 @@ class Asaas
      */
     public function customer()
     {
-        return new Customer($this->adapter, $this->ambiente);
+        return new Customer($this->adapter);
     }
 
     /**
@@ -59,7 +40,7 @@ class Asaas
      */
     public function subscription()
     {
-        return new Subscription($this->adapter, $this->ambiente);
+        return new Subscription($this->adapter);
     }
 
     /**
@@ -69,7 +50,7 @@ class Asaas
      */
     public function payment()
     {
-        return new Payment($this->adapter, $this->ambiente);
+        return new Payment($this->adapter);
     }
 
     /**
@@ -79,7 +60,7 @@ class Asaas
      */
     public function notification()
     {
-        return new Notification($this->adapter, $this->ambiente);
+        return new Notification($this->adapter);
     }
 
     /**
@@ -89,6 +70,6 @@ class Asaas
      */
     public function city()
     {
-        return new City($this->adapter, $this->ambiente);
+        return new City($this->adapter);
     }
 }

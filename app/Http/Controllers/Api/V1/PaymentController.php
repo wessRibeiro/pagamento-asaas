@@ -21,12 +21,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        try{
-            $data = $this->service->index();
-            return $data;
-        }catch (\Exception $ex){
-            return returnJson($ex);
-        }
+        return response()->json($this->service->index(), 200);
     }
 
     /**
@@ -34,7 +29,7 @@ class PaymentController extends Controller
      */
     public function store(StorePaymentRequest $request)
     {
-        //
+        return response()->json($this->service->create($request->all()), 200);
     }
 
     /**

@@ -33,24 +33,9 @@ class GuzzleHttpAdapter implements AdapterInterface
      */
     protected $response;
 
-    /**
-     * Constructor
-     *
-     * @param  string                $token   Access Token
-     * @param  ClientInterface|null  $client  Client Instance
-     */
-    public function __construct($token, ClientInterface $client = null)
+    public function __construct()
     {
-        if(version_compare(ClientInterface::VERSION, '6') === 1)
-        {
-            $this->client = $client ?: new Client(['headers' => ['access_token' => $token]]);
-        }
-        else
-        {
-            $this->client = $client ?: new Client();
-
-            $this->client->setDefaultOption('headers/access_token', $token);
-        }
+        $this->client = new Client(['headers' => ['access_token' => env('ASSAS_API_KEY')]]);
     }
 
     /**
