@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PaymentController::class, 'index'])->name('payments');
+Route::get('/boleto/{id_payment}', [PaymentController::class, 'showBoleto'])->name('boleto');
+Route::get('/pix/{id_payment}', [PaymentController::class, 'showPix'])->name('pix');
+Route::get('/credito/{id_payment}', [PaymentController::class, 'showCredito'])->name('credito');

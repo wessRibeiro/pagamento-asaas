@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Api\V1;
+namespace App\Services;
 
 use App\Asaas\Adapter\GuzzleAdapter;
 use App\Asaas\Asaas;

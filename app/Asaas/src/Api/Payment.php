@@ -13,7 +13,7 @@ class Payment extends \App\Asaas\Api\AbstractApi
      * Get all payments
      *
      * @param   array  $filters  (optional) Filters Array
-     * @return  array  Array
+     * @return  mixed
      */
     public function getAll(array $filters = [])
     {
@@ -25,12 +25,38 @@ class Payment extends \App\Asaas\Api\AbstractApi
     /**
      * Get Payment By Id
      *
-     * @param   int  $id  Payment Id
-     * @return  array
+     * @param   string  $id  Payment Id
+     * @return  mixed
      */
-    public function getById($id)
+    public function getById(string $id): mixed
     {
         $payment = $this->adapter->get(sprintf('%s/payments/%s', $this->endpoint, $id));
+        $payment = json_decode($payment);
+        return $payment;
+    }
+
+    /**
+     * Get Payment boleto
+     *
+     * @param   string  $id  Payment Id
+     * @return  mixed
+     */
+    public function getBoleto(string $id): mixed
+    {
+        $payment = $this->adapter->get(sprintf('%s/payments/%s/identificationField', $this->endpoint, $id));
+        $payment = json_decode($payment);
+        return $payment;
+    }
+
+    /**
+     * Get Payment pix
+     *
+     * @param   string  $id  Payment Id
+     * @return  mixed
+     */
+    public function getPix(string $id): mixed
+    {
+        $payment = $this->adapter->get(sprintf('%s/payments/%s/pixQrCode', $this->endpoint, $id));
         $payment = json_decode($payment);
         return $payment;
     }
@@ -40,7 +66,7 @@ class Payment extends \App\Asaas\Api\AbstractApi
      *
      * @param   int    $customerId  Customer Id
      * @param   array  $filters     (optional) Filters Array
-     * @return  array
+     * @return  mixed
      */
     public function getByCustomer($customerId, array $filters = [])
     {
@@ -58,7 +84,7 @@ class Payment extends \App\Asaas\Api\AbstractApi
      *
      * @param   int    $subscriptionId  Subscription Id
      * @param   array  $filters         (optional) Filters Array
-     * @return  array
+     * @return  mixed
      */
     public function getBySubscription($subscriptionId)
     {
@@ -71,7 +97,7 @@ class Payment extends \App\Asaas\Api\AbstractApi
      * Create New Payment
      *
      * @param   array  $data  Payment Data
-     * @return  array
+     * @return  mixed
      */
     public function create(array $data)
     {
@@ -86,7 +112,7 @@ class Payment extends \App\Asaas\Api\AbstractApi
      *
      * @param   string  $id    Payment Id
      * @param   array   $data  Payment Data
-     * @return  array
+     * @return  mixed
      */
     public function update($id, array $data)
     {
