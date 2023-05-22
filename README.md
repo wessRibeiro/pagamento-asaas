@@ -3,14 +3,14 @@
 - Crie ao menos um Customer para salva-lo na base **(obrigatório)**
 - Adicione sua key da ASAAS em .env ASAAS_API_KEY
 - garanta as configs de banco:
-`
+```
   DB_CONNECTION=mysql
   DB_HOST=db
   DB_PORT=3306
   DB_DATABASE=laravel
   DB_USERNAME=root
   DB_PASSWORD=root
-`
+```
 #para o backend
 
 Crie o Arquivo .env
