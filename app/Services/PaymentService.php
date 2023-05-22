@@ -8,7 +8,7 @@ use App\Models\Customer;
 
 class PaymentService
 {
-    protected Asaas $asaas;
+    public Asaas $asaas;
 
     public function  __construct()
     {
@@ -20,7 +20,7 @@ class PaymentService
         return $this->asaas->payment()->getAll();
     }
 
-    public function showBoleto(string $paymentId){
+    public function showBoleto(string $paymentId):array{
         $payment['boleto'] = $this->asaas->payment()->getBoleto($paymentId);
         $payment['payment'] = $this->asaas->payment()->getById($paymentId);
 
@@ -73,10 +73,10 @@ class PaymentService
             'value' => $inputs['value'],
             'dueDate' => date('Y-m-d'),
             'fine' => [
-                'value' => 1
+                'value' => 0
             ],
             'interest' => [
-                'value' => 2
+                'value' => 0
             ]
         ];
 

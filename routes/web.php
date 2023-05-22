@@ -15,7 +15,4 @@ use \App\Http\Controllers\PaymentController;
 */
 
 Route::get('/', [PaymentController::class, 'index'])->name('payments');
-Route::get('/boleto/{id_payment}', [PaymentController::class, 'showBoleto'])->name('boleto');
-Route::get('/pix/{id_payment}', [PaymentController::class, 'showPix'])->name('pix');
-Route::get('/credito/{id_payment}', [PaymentController::class, 'showCredito'])->name('credito');
 Route::post('payment', [PaymentController::class, 'store'])->name('payment.store');
