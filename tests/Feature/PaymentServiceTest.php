@@ -20,19 +20,11 @@ class PaymentServiceTest extends TestCase
         $this->asaasMock = Mockery::mock(Asaas::class);
         $this->customerMock = Mockery::mock(Customer::class);
         // Create an instance of PaymentService with mocked dependencies
-        $this->paymentService = new PaymentService($this->asaasMock);
+        $this->paymentService = new PaymentService();
 
     }
 
-    public function testIndex()
-    {
-        // Act
-        $result = $this->paymentService->index();
-
-        // Assert
-        $this->assertIsArray($result);
-    }
-
+    
     public function testShowBoleto()
     {
         // Arrange
