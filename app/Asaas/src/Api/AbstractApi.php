@@ -17,7 +17,7 @@ abstract class AbstractApi
     public function __construct(AdapterInterface $adapter)
     {
         $this->adapter = $adapter;
-        $this->endpoint = env('ASSAS_HOMOLOG_HOST');
+        $this->endpoint = env('ASAAS_HOMOLOG_HOST');
     }
 
 }

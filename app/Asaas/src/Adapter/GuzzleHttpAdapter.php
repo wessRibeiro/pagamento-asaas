@@ -35,7 +35,7 @@ class GuzzleHttpAdapter implements AdapterInterface
 
     public function __construct()
     {
-        $this->client = new Client(['headers' => ['access_token' => env('ASSAS_API_KEY')]]);
+        $this->client = new Client(['headers' => ['access_token' => env('ASAAS_API_KEY')]]);
     }
 
     /**
